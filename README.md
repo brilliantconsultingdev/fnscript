@@ -8,7 +8,7 @@
 Using yarn:
 
 ```sh
-yarn install fnscript
+yarn add fnscript
 ```
 
 Using npm:
