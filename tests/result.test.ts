@@ -166,6 +166,22 @@ describe("Result.map()", () => {
   });
 });
 
+describe("Result.mapErr()", () => {
+  test("maps to Err(newError) if Result is Err(error)", () => {
+    const sample: Result<number, string> = Err("test error");
+    expect(sample.mapErr((msg) => `error is: ${msg}`).getError()).toEqual(
+      "error is: test error"
+    );
+  });
+
+  test("does not map error if Result is Ok(value)", () => {
+    const sample: Result<number, string> = Ok(321);
+    expect(
+      sample.mapErr((msg) => `error is: ${msg}`).getErrorOr("value")
+    ).toEqual("value");
+  });
+});
+
 describe("Result.and()", () => {
   test("returns argument if Result is Ok(value)", () => {
     const sample = Ok(123);

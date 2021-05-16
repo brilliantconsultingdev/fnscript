@@ -148,6 +148,19 @@ export class Result<V, E> {
   }
 
   /**
+   * Maps self to new `Result` keeping `value` and modifying `error`.
+   *
+   * @param mapper mapper function
+   */
+  mapErr<T>(mapper: (error: E) => T): Result<V, T> {
+    if (this.isErr()) {
+      return Result.Err(mapper(this.error));
+    }
+
+    return Result.Ok(this.value);
+  }
+
+  /**
    * Returns argument if self is `Ok(value)`. Otherwise returns `Err(error)`.
    *
    * @param result value to return
