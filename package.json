@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "",
   "author": "genomekon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brilliantconsultingdev/fnscript.git"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
