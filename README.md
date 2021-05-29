@@ -139,10 +139,10 @@ import { Error } from "fnscript";
 
 console.log(Error.new("invalid argument").text()); // "invalid argument"
 console.log(Error.new(123).text()); // "123"
-console.log(Error.new([1, 2, 3]).text()); // 1,2,3
+console.log(Error.new([1, 2, 3]).text()); // "1,2,3"
 
-const fileNotFound = Error.new("file not found");
-const fileReadError = Error.new("failed to read file").wrap(fileNotFound);
+const fileNotFoundError = Error.new("file not found");
+const fileReadError = Error.new("failed to read file").wrap(fileNotFoundError);
 const configReadError = Error.new("failed to read config").wrap(fileReadError);
 
 console.log(configReadError.text()); // "failed to read config: failed to read file: file not found"
