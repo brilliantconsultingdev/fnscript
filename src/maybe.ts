@@ -176,6 +176,21 @@ export class Maybe<V> {
   }
 
   /**
+   * Runs `fun` with value if it's Just(value).
+   * Will not run `fun` if it's Nothing().
+   * Returns self.
+   *
+   * @param mapper tap function
+   */
+  tap(fun: (value: V) => void): Maybe<V> {
+    if (this.isValue()) {
+      fun(this.value);
+    }
+
+    return this;
+  }
+
+  /**
    * Wraps value in `Maybe` (value) object.
    *
    * @param value value to wrap

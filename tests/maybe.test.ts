@@ -287,6 +287,30 @@ describe("Maybe.map()", () => {
   });
 });
 
+describe("Maybe.tap()", () => {
+  test("runs function passed as argument if it is Just(value)", () => {
+    let x = 0;
+    let y = 0;
+    const maybeValue = Maybe.from(10);
+
+    maybeValue.tap((val) => (x = val + 5)).tap((val) => (y = val + 10));
+
+    expect(x).toEqual(15);
+    expect(y).toEqual(20);
+  });
+
+  test("does not run function passed as argument if it is Nothing()", () => {
+    let x = 0;
+    let y = 0;
+    const maybeValue: Maybe<number> = Nothing();
+
+    maybeValue.tap((val) => (x = val + 5)).tap((val) => (y = val + 10));
+
+    expect(x).toEqual(0);
+    expect(y).toEqual(0);
+  });
+});
+
 describe("Just()", () => {
   test("wraps value", () => {
     expect(Just(123).isValue()).toBeTruthy();
